@@ -9,8 +9,14 @@
 
 module.exports = {
     data: function() {
-        return {
-            
+        return { }
+    },
+    computed: {
+        accts: function() {
+            console.log("SKJASDLAJKSDLKJASD")
+            var x = [];
+            _.each(this.$store.getters.accts, acct => x.push(acct));
+            return x;
         }
     }
 };

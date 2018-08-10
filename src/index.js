@@ -6,12 +6,13 @@ import Accounts from 'accounts.vue'
 
 Vue.use(Vuex);
 
-const store = LedgerStore();
+const store = LedgerStore;
 
 store.commit('add', 'bobby');
 
 window.vueApp = new Vue({
     store,
+    data: function() { return {} },
     el: '#app',
     components: {  Ledger, Accounts },
     template: `

@@ -31,30 +31,28 @@ class Account {
     }
 }
 
-export default function() {
-    return new Vuex.Store({
-        state: {
-            accounts: {}
+export default new Vuex.Store({
+    state: {
+        accounts: {}
+    },
+    mutations: {
+        add: function(state, name) {
+            var acct = new Account(name);
+            acct.deposit(0, 'Initial Balance');
+            state.accounts[name] = acct;
         },
-        mutations: {
-            add: function(state, name) {
-                var acct = new Account(name);
-                acct.deposit(0, 'Initial Balance');
-                state.accounts[name] = acct;
-            },
-            deposit: function(state, name, amt, byWhom) {
-                state.accounts[name].deposit(amt, byWhom);
-            },
-            withdraw: function(state, name, amt, byWhom) {
-                state.accounts[name].withdraw(amt, byWhom);
-            }
+        deposit: function(state, name, amt, byWhom) {
+            state.accounts[name].deposit(amt, byWhom);
         },
-        getters: {
-                     accts: function(state) {
-                                var x = [];
-                                _.each(state.accounts, acct => x.push(acct));
-                                return x;
-                            }
-                 }
-    });
-};
+        withdraw: function(state, name, amt, byWhom) {
+            state.accounts[name].withdraw(amt, byWhom);
+        }
+    },
+    getters: {
+                 accts: function(state) {
+                            var x = [];
+                            _.each(state.accounts, acct => x.push(acct));
+                            return x;
+                        }
+             }
+});

@@ -20,7 +20,8 @@ module.exports = {
             console.log("Re-evaluating accts().");
             var x = [];
             console.log("Accounts: ", this.$store.getters.accts)
-            _.each(this.$store.getters.accts, acct => x.push(acct));
+            var z = this.$store.getters.accts();
+            _.each(z, acct => x.push(acct));
             return x;
         }
     },

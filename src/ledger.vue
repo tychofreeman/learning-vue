@@ -15,7 +15,7 @@ module.exports = {
         accts: function() {
             console.log("SKJASDLAJKSDLKJASD")
             var x = [];
-            _.each(this.$store.getters.accts, acct => x.push(acct));
+            _.each(this.$store.getters.accts(), acct => x.push(acct));
             return x;
         }
     }

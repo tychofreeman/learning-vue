@@ -39,7 +39,7 @@ export default new Vuex.Store({
         add: function(state, name) {
             var acct = new Account(name);
             acct.deposit(0, 'Initial Balance');
-            state.accounts[name] = acct;
+            Vue.set(state.accounts, name, acct);
         },
         deposit: function(state, name, amt, byWhom) {
             state.accounts[name].deposit(amt, byWhom);
@@ -49,10 +49,10 @@ export default new Vuex.Store({
         }
     },
     getters: {
-                 accts: function(state) {
-                            var x = [];
-                            _.each(state.accounts, acct => x.push(acct));
-                            return x;
-                        }
+                 accts: function(state) { return function() {
+                                var x = [];
+                                _.each(state.accounts, acct => x.push(acct));
+                                return x;
+                        } }
              }
 });

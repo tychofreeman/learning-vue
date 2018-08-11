@@ -17,8 +17,8 @@ window.vueApp = new Vue({
     components: {  Ledger, Accounts },
     template: `
         <div class='app'>
-            <ledger></ledger>
             <accounts></accounts>
+            <ledger></ledger>
         </div>
     `,
 })

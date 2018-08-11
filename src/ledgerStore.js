@@ -5,13 +5,13 @@ Vue.use(Vuex)
 
 class Deposit {
     constructor(amt, depositor) {
-        this.amt = amt;
+        this.amt = parseInt(amt);
     }
 }
 
 class Withdraw {
     constructor(amt, merchant) {
-        this.amt = amt;
+        this.amt = parseInt(amt);
     }
 }
 
@@ -41,10 +41,16 @@ export default new Vuex.Store({
             acct.deposit(0, 'Initial Balance');
             Vue.set(state.accounts, name, acct);
         },
-        deposit: function(state, name, amt, byWhom) {
+        deposit: function(state, params) {
+            var name = params.name;
+            var amt = params.amt;
+            var byWhom = params.byWhom;
             state.accounts[name].deposit(amt, byWhom);
         },
-        withdraw: function(state, name, amt, byWhom) {
+        withdraw: function(state, params) {
+            var name = params.name
+            var amt = params.amt;
+            var byWhom = params.byWhom;
             state.accounts[name].withdraw(amt, byWhom);
         }
     },
